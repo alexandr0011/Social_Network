@@ -1,0 +1,18 @@
+.friendsComponent {
+    color: #fff;
+    padding-top: 30px;
+}
+
+.friendsPhoto {
+    width: 40px;
+    height: 40px;
+    background: #f9de59;
+    border-radius: 50%;
+}
+
+.friendBlock {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 0.7rem;
+}
