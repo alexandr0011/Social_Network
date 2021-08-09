@@ -8,11 +8,11 @@ export const Dialogs = (props) => {
     const state = props.dialogsPage;
 
     const dialogsDataElements = state.dialogsData.map((item)=>{
-        return <DialogItem name={item.name} id={item.id} />
+        return <DialogItem name={item.name} id={item.id} key={item.id} />
     })
 
     const messagesDataElements = state.messagesData.map((item) => {
-        return <Message message={item.message}/>
+        return <Message message={item.message} key={item.id} />
     });
 
     const addMessage = () => {
