@@ -8,13 +8,11 @@ export const MyPosts = (props) => {
         return <Post message={item.message} likesCounter={item.likesCount}/>
     })
 
-    const text = React.createRef()
-
     const onAddPost = () => {
         props.addPost();
     };
-    const onPostChange = () => {
-        const post = text.current.value;
+    const onNewPostChange = (event) => {
+        const post = event.target.value;
         props.updateNewPostText(post);
     }
 
@@ -23,9 +21,9 @@ export const MyPosts = (props) => {
                 <h3>My posts</h3>
                 <div>
                     <div>
-                        <textarea onChange={onPostChange}
-                                  ref={text}
-                                  value={props.newPostText} />
+                        <textarea onChange={onNewPostChange}
+                                  value={props.newPostText}
+                                  placeholder='Enter your message'/>
                     </div>
                     <button onClick={onAddPost}>Add post</button>
                 </div>

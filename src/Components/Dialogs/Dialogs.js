@@ -37,7 +37,7 @@ export const Dialogs = (props) => {
                 </div>
                 <div>
                     <textarea onChange={onNewMessageChange}
-                              value={props.newMessagesText}
+                              value={state.newMessagesText}
                               placeholder='Enter your message'/>
                 </div>
                 <div>

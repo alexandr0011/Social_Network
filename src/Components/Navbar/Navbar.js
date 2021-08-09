@@ -4,7 +4,7 @@ import {Friends} from "./Friends/Friends";
 
 export const Navbar = (props) => {
 
-    const state = props.store.getState().navbar;
+    // const state = props.store.getState().navbar;
 
     return(
         <ul className={s.nav}>
@@ -23,7 +23,7 @@ export const Navbar = (props) => {
             <li className={`${s.item} ${s.settings}`}>
                 <NavLink to="settings" activeClassName={s.active}>Settings</NavLink>
             </li>
-            <Friends state={state} />
+            {/*<Friends state={state} />*/}
         </ul>
     )
 }
