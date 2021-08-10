@@ -1,0 +1,50 @@
+.postWrapper {
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    height: 140px;
+    margin: 20px auto;
+    background: #252b31;
+    color: #fff;
+}
+
+.leftBar {
+    padding: 5px 10px;
+    width: 106px;
+}
+.buttonDiv {
+    text-align: center;
+}
+
+.buttonFollow {
+    color: #6e93d6;
+    border: 1px solid rgba(255, 255, 255, .4);
+    background: none;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.buttonUnfollow {
+    color: white;
+    border: 1px solid rgba(255, 255, 255, .4);
+    background: none;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.body {
+
+}
+
+.rightBar {
+    padding: 5px 10px;
+}
+
+.userPhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
