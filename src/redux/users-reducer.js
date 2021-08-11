@@ -1,60 +1,14 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT';
 
 const initialState = {
-    usersData: [
-        // {   id: 1,
-        //     photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-        //     followed: false,
-        //     fullName: 'Alex',
-        //     status: 'Hey iam here',
-        //     location: {
-        //         city: 'Minsk',
-        //         country: 'Belarus'
-        //     }
-        // },
-        // {   id: 2,
-        //     photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-        //     followed: true,
-        //     fullName: 'Dmitry',
-        //     status: 'Yo',
-        //     location: {
-        //         city: 'Moscow',
-        //         country: 'Russia'
-        //     }
-        // },
-        // {   id: 3,
-        //     photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-        //     followed: false,
-        //     fullName: 'Sofia',
-        //     status: 'Hello',
-        //     location: {
-        //         city: 'London',
-        //         country: 'England'
-        //     }
-        // },
-        // {   id: 4,
-        //     photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-        //     followed: true,
-        //     fullName: 'Mark',
-        //     status: 'Iam here',
-        //     location: {
-        //         city: 'Kiev',
-        //         country: 'Ukraine'
-        //     }
-        // },
-        // {   id: 5,
-        //     photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-        //     followed: true,
-        //     fullName: 'David',
-        //     status: 'Hi',
-        //     location: {
-        //         city: 'Rome',
-        //         country: 'Italian'
-        //     }
-        // },
-    ],
+    usersData: [],
+    pageSize: 20,
+    totalUsersCount: 1,
+    currentPage: 1
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -76,9 +30,15 @@ export const usersReducer = (state = initialState, action) => {
                     return user;
                 })
             };
-        case SET_USERS: {
-            return { ...state, usersData: [...state.usersData, ...action.users]}
-        }
+        case SET_USERS:
+            return { ...state, usersData: action.users};
+
+        case SET_CURRENT_PAGE:
+            return { ...state, currentPage: action.currentPage};
+
+        case SET_TOTAL_USERS_COUNT:
+            return { ...state, totalUsersCount: action.totalUsersCount};
+
         default:
             return state;
     }
@@ -103,5 +63,19 @@ export const setUsersAC = (users) => {
     return {
         type: SET_USERS,
         users
+    }
+}
+
+export const setCurrentPageAC = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage
+    }
+}
+
+export const setTotalUsersCountAC = (totalUsersCount) => {
+    return {
+        type: SET_TOTAL_USERS_COUNT,
+        totalUsersCount
     }
 }
