@@ -1,68 +1,29 @@
-import s from './users.module.css'
+import s from "./users.module.css";
+import userPhoto from "../../img/user-photo.png";
+import React from "react";
 
 export const Users = (props) => {
-    if (props.users.length === 0) {
-        props.setUsers([
-            {   id: 1,
-                photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-                followed: false,
-                fullName: 'Alex',
-                status: 'Hey iam here',
-                location: {
-                    city: 'Minsk',
-                    country: 'Belarus'
-                }
-            },
-            {   id: 2,
-                photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-                followed: true,
-                fullName: 'Dmitry',
-                status: 'Yo',
-                location: {
-                    city: 'Moscow',
-                    country: 'Russia'
-                }
-            },
-            {   id: 3,
-                photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-                followed: false,
-                fullName: 'Sofia',
-                status: 'Hello',
-                location: {
-                    city: 'London',
-                    country: 'England'
-                }
-            },
-            {   id: 4,
-                photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-                followed: true,
-                fullName: 'Mark',
-                status: 'Iam here',
-                location: {
-                    city: 'Kiev',
-                    country: 'Ukraine'
-                }
-            },
-            {   id: 5,
-                photoUrl: 'https://stuki-druki.com/biofoto3/dolph-lundgren-01.jpg',
-                followed: true,
-                fullName: 'David',
-                status: 'Hi',
-                location: {
-                    city: 'Rome',
-                    country: 'Italian'
-                }
-            },
-        ])
+
+    const pagesCount = Math.ceil (props.totalUsersCount / props.pageSize);
+    const pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
-    return (
+
+    return(
         <div>
+            <div className={s.pagesBox}>
+                {pages.map( page => {
+                    return <span className={props.currentPage === page && s.selectedPage}
+                                 onClick={ () => {props.onPageChanged(page)} }>{page}</span>
+                })}
+            </div>
             {
                 props.users.map(user => <div key={user.id}>
                     <div className={s.postWrapper}>
                         <div className={s.leftBar}>
                             <div>
-                                <img src={user.photoUrl} className={s.userPhoto} />
+                                <img src={user.photos.small != null ? user.photos.small : userPhoto} className={s.userPhoto} alt='#'/>
                             </div>
                             <div className={s.buttonDiv}>
                                 { user.followed
@@ -72,12 +33,12 @@ export const Users = (props) => {
                             </div>
                         </div>
                         <div className={s.body}>
-                            <div>{user.fullName}</div>
+                            <div>{user.name}</div>
                             <div>{user.status}</div>
                         </div>
                         <div className={s.rightBar}>
-                            <div>{user.location.city}</div>
-                            <div>{user.location.country}</div>
+                            <div>{"user.location.city"}</div>
+                            <div>{"user.location.country"}</div>
                         </div>
                     </div>
 
