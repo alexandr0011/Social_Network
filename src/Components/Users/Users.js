@@ -1,6 +1,7 @@
 import s from "./users.module.css";
 import userPhoto from "../../img/user-photo.png";
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 export const Users = (props) => {
 
@@ -14,7 +15,7 @@ export const Users = (props) => {
         <div>
             <div className={s.pagesBox}>
                 {pages.map( page => {
-                    return <span className={props.currentPage === page && s.selectedPage}
+                    return <span key={page.id} className={props.currentPage === page && s.selectedPage}
                                  onClick={ () => {props.onPageChanged(page)} }>{page}</span>
                 })}
             </div>
@@ -23,7 +24,10 @@ export const Users = (props) => {
                     <div className={s.postWrapper}>
                         <div className={s.leftBar}>
                             <div>
-                                <img src={user.photos.small != null ? user.photos.small : userPhoto} className={s.userPhoto} alt='#'/>
+                                <NavLink to={'/profile/' + user.id  }>
+                                    <img src={user.photos.small != null ? user.photos.small : userPhoto}
+                                         className={s.userPhoto} alt='#'/>
+                                </NavLink>
                             </div>
                             <div className={s.buttonDiv}>
                                 { user.followed

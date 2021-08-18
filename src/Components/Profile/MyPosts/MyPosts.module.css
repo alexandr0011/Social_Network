@@ -1,3 +1,23 @@
 .myPosts {
-    padding-left: 15px;
+    padding: 15px;
+}
+
+.input {
+    width: 800px;
+    height: 100px;
+}
+
+.postInput {
+    display: flex;
+}
+
+.postBtn {
+    width: 165px;
+    height: 106px;
+    color: #6e93d6;
+    border: 1px solid rgba(255, 255, 255, .4);
+    background: #252b31;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }

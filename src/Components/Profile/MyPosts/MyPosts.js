@@ -21,13 +21,13 @@ export const MyPosts = (props) => {
     return(
             <div className={s.myPosts}>
                 <h3>My posts</h3>
-                <div>
+                <div className={s.postInput}>
                     <div>
-                        <textarea onChange={onNewPostChange}
+                        <textarea className={s.input} onChange={onNewPostChange}
                                   value={props.newPostText}
                                   placeholder='Enter your message'/>
                     </div>
-                    <button onClick={onAddPost}>Add post</button>
+                    <button className={s.postBtn} onClick={onAddPost}>Add post</button>
                 </div>
 
                 <div>

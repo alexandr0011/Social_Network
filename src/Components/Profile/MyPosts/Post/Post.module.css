@@ -1,16 +1,17 @@
 .post img {
     width: 50px;
     height: 50px;
-    padding: 10px 10px;
+    padding: 15px 10px;
 }
 
 .post {
     display: flex;
-    width: 300px;
-    height: 70px;
+    justify-content: space-between;
+    background-color: #ffffff ;
     margin: 5px 0px;
     border: 2px solid #252b31 ;
     border-radius: 15px;
+    font-size: 1.5rem;
 }
 
 .likesCounter {
