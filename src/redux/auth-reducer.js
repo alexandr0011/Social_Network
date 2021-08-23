@@ -1,3 +1,5 @@
+import {getAuth} from "../api/api";
+
 const SET_USER_DATA = 'SET-USER-DATA';
 
 const initialState = {
@@ -30,3 +32,13 @@ export const setAuthUserDataAC = (userId, email, login) => {
         data: {userId, email, login}
     }
 };
+
+export const getAuthUserDataThunkCreator = () => (dispatch) => {
+    getAuth()
+        .then(data => {
+            if (data.resultCode === 0) {
+                let {id, email, login} = data.data;
+               dispatch(setAuthUserDataAC(id, email, login));
+            }
+        });
+}
