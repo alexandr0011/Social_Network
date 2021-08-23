@@ -1,3 +1,5 @@
+import {getUsers, follow, unfollow} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -60,52 +62,50 @@ export const usersReducer = (state = initialState, action) => {
 
 }
 
-export const followAC = (userId) => {
-    return {
-        type: FOLLOW,
-        userId
-    }
-}
+export const followAC = (userId) =>({type: FOLLOW, userId});
+export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
+export const setUsersAC = (users) => ({type: SET_USERS, users});
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
+export const setIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleFollowingProgressAC = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId});
 
-export const unfollowAC = (userId) => {
-    return {
-        type: UNFOLLOW,
-        userId
-    }
-}
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setIsFetchingAC(true));
 
-export const setUsersAC = (users) => {
-    return {
-        type: SET_USERS,
-        users
+        getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setIsFetchingAC(false));
+                dispatch(setUsersAC(data.items));
+                dispatch(setCurrentPageAC(currentPage))
+                dispatch(setTotalUsersCountAC(data.totalCount));
+            });
     }
-}
+};
 
-export const setCurrentPageAC = (currentPage) => {
-    return {
-        type: SET_CURRENT_PAGE,
-        currentPage
+export const followThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgressAC(true, userId));
+        follow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(userId));
+                }
+                dispatch(toggleFollowingProgressAC(false, userId));
+        });
     }
-}
+};
 
-export const setTotalUsersCountAC = (totalUsersCount) => {
-    return {
-        type: SET_TOTAL_USERS_COUNT,
-        totalUsersCount
+export const unfollowThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgressAC(true, userId));
+        unfollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollowAC(userId));
+                }
+                dispatch(toggleFollowingProgressAC(false, userId));
+            });
     }
-}
-
-export const setIsFetchingAC = (isFetching) => {
-    return {
-        type: TOGGLE_IS_FETCHING,
-        isFetching
-    }
-}
-
-export const toggleFollowingProgressAC = (isFetching, userId) => {
-    return {
-        type: TOGGLE_IS_FOLLOWING_PROGRESS,
-        isFetching,
-        userId
-    }
-}
+};

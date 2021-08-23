@@ -18,12 +18,12 @@ export const getAuth = () => {
         .then(response => response.data);
 }
 
-export const getFollow = (userId) => {
+export const follow = (userId) => {
     return instance.post(`follow/${userId}`)
         .then(response => response.data);
 }
 
-export const getUnfollow = (userId) => {
+export const unfollow = (userId) => {
     return instance.delete(`follow/${userId}`)
         .then(response => response.data);
 }
