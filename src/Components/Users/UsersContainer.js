@@ -5,7 +5,8 @@ import {
     setUsersAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setIsFetchingAC
+    setIsFetchingAC,
+    toggleFollowingProgressAC
 } from "../../redux/users-reducer";
 import React from "react";
 import {Users} from "./Users";
@@ -45,6 +46,8 @@ class UsersAPIComponent extends React.Component {
                    onPageChanged={this.onPageChanged}
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
+                   toggleFollowingProgress={this.props.toggleFollowingProgress}
+                   followingInProgress={this.props.followingInProgress}
             />
         </>
     }
@@ -56,7 +59,8 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 };
 
@@ -79,6 +83,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         toggleIsFetching: (isFetching) => {
             dispatch(setIsFetchingAC(isFetching))
+        },
+        toggleFollowingProgress: (isFetching, userId) => {
+            dispatch(toggleFollowingProgressAC(isFetching, userId))
         }
     }
 };
