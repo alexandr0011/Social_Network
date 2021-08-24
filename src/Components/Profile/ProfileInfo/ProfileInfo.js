@@ -1,6 +1,7 @@
 import s from './Profile.module.css';
 import CityImg from '../../../img/background_2.jpg';
 import {Preloader} from "../../common/Preloader/Preloader";
+import {ProfileStatus} from "./ProfileStatus";
 export const ProfileInfo = (props) => {
     if(!props.profile) {
         return <Preloader />
@@ -18,6 +19,7 @@ export const ProfileInfo = (props) => {
                     USER
                     <div>{props.profile.fullName}</div>
                     <div>{props.profile.aboutMe}</div>
+                    <ProfileStatus/>
                 </div>
                 <div>
                     CONTACTS

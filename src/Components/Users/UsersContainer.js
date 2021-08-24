@@ -7,6 +7,8 @@ import {
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/whithAuthRedirect";
+import {compose} from "redux";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
@@ -49,22 +51,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        follow: (userId) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId))
-        },
-        getUsers: (currentPage, pageSize) => {
-            dispatch(getUsersThunkCreator(currentPage, pageSize))
-        },
-        followThunk: (userId) => {
-            dispatch(followThunkCreator(userId))
-        },
-        unfollowThunk: (userId) => {
-            dispatch(unfollowThunkCreator(userId))
-        }
+        follow: (userId) => {dispatch(followAC(userId))},
+        unfollow: (userId) => {dispatch(unfollowAC(userId))},
+        getUsers: (currentPage, pageSize) => {dispatch(getUsersThunkCreator(currentPage, pageSize))},
+        followThunk: (userId) => {dispatch(followThunkCreator(userId))},
+        unfollowThunk: (userId) => {dispatch(unfollowThunkCreator(userId))}
     }
 };
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+
+export const UsersContainer = compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+    ) (UsersAPIComponent);
