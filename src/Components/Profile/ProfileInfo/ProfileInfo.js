@@ -19,7 +19,7 @@ export const ProfileInfo = (props) => {
                     USER
                     <div>{props.profile.fullName}</div>
                     <div>{props.profile.aboutMe}</div>
-                    <ProfileStatus/>
+                    <ProfileStatus status={"hello"}/>
                 </div>
                 <div>
                     CONTACTS
