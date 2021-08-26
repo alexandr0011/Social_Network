@@ -39,6 +39,9 @@ const mapStateToProps = (state) => {
 };
 
 export const ProfileContainer = compose(
-    connect(mapStateToProps, {getUserProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator}),
+    connect(mapStateToProps, {
+        getUserProfileThunkCreator,
+        getStatusThunkCreator,
+        updateStatusThunkCreator}),
     withRouter,
     withAuthRedirect)(ProfileAPIComponent)
