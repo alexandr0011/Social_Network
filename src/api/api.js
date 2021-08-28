@@ -18,6 +18,17 @@ export const getAuth = () => {
         .then(response => response.data);
 }
 
+export const login = (email, password, rememberMe = false) => {
+    return instance.post('auth/login', {email, password, rememberMe})
+        .then(response => response.data);
+}
+
+export const logout = () => {
+    return instance.delete('auth/login')
+        .then(response => response.data);
+}
+
+
 export const follow = (userId) => {
     return instance.post(`follow/${userId}`)
         .then(response => response.data);
