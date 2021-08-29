@@ -8,12 +8,14 @@ import {
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/whithAuthRedirect";
 import {compose} from "redux";
+import {getProfile, getStatus} from "../../redux/profile-selectors";
+import {getAuthorizedUserId, getIsAuth} from "../../redux/auth-selectors";
 
 class ProfileAPIComponent extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 18959;
+            userId = this.props.authorizedUserId;
         }
         this.props.getUserProfileThunkCreator(userId);
         this.props.getStatusThunkCreator(userId);
@@ -33,8 +35,10 @@ class ProfileAPIComponent extends React.Component {
 
 const mapStateToProps = (state) => {
     return{
-        profile: state.profilePage.profile,
-        status: state.profilePage.status
+        profile: getProfile(state),
+        status: getStatus(state),
+        authorizedUserId: getAuthorizedUserId(state),
+        isAuth: getIsAuth(state)
     }
 };
 

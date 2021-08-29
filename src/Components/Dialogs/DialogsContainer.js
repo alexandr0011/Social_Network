@@ -3,12 +3,14 @@ import {sendMessageActionCreator} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/whithAuthRedirect";
 import {compose} from "redux";
+import {getIsAuth} from "../../redux/auth-selectors";
+import {getDialogsPage, getNewMessagesText} from "../../redux/dialogs-selectors";
 
 const mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage,
-        newMessagesText: state.newMessagesText,
-        isAuth: state.auth.isAuth
+        dialogsPage: getDialogsPage(state),
+        newMessagesText: getNewMessagesText(state),
+        isAuth: getIsAuth(state)
     }
 };
 

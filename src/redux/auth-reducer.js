@@ -1,4 +1,5 @@
 import {getAuth, login, logout} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET-USER-DATA';
 
@@ -47,6 +48,8 @@ export const loginThunkCreator = (email, password, rememberMe) => (dispatch) => 
         .then(data => {
             if (data.resultCode === 0) {
                 dispatch(getAuthUserDataThunkCreator())
+            }else {
+                dispatch(stopSubmit('login', {_error: 'Email or Password is wrong'}));
             }
         });
 }

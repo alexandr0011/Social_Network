@@ -2,6 +2,8 @@ import s from './Profile.module.css';
 import CityImg from '../../../img/background_2.jpg';
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
+import profilePhoto from './../../../img/user-photo02.jpg'
+
 export const ProfileInfo = (props) => {
     if(!props.profile) {
         return <Preloader />
@@ -13,7 +15,7 @@ export const ProfileInfo = (props) => {
             </div>
             <div className={s.avatarAndDiscription}>
                 <div>
-                    <img src={props.profile.photos.large} />
+                    <img src={props.profile.photos.large != null ? props.profile.photos.large : profilePhoto} />
                 </div>
                 <div>
                     USER

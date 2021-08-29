@@ -20,3 +20,10 @@
     color: #eeeeee;
     text-decoration: none;
 }
+
+.logoutBtn {
+    color: #6e93d6;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

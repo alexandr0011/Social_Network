@@ -4,6 +4,8 @@ import {requiredField} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {loginThunkCreator} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
+import s from '../common/FormsControls/FormsControls.module.css'
+import {getIsAuth} from "../../redux/auth-selectors";
 
 export const Login = (props) => {
     const onSubmit = (formData) => {
@@ -39,6 +41,7 @@ const LoginForm = (props) => {
             <div>
                 <Field type={'checkbox'} name={'rememberMe'} component={'input'}/> remember me
             </div>
+            {props.error && <div className={s.formSummaryError}>{props.error}</div>}
             <div>
                 <button>Login</button>
             </div>
@@ -47,7 +50,8 @@ const LoginForm = (props) => {
 }
 
 const LoginReduxForm = reduxForm({form: 'login'}) (LoginForm)
+
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: getIsAuth(state)
 })
 export const LoginContainer = connect(mapStateToProps, {loginThunkCreator}) (Login)
