@@ -1,8 +1,8 @@
 import s from './Profile.module.css';
 import CityImg from '../../../img/background_2.jpg';
 import {Preloader} from "../../common/Preloader/Preloader";
-import {ProfileStatus} from "./ProfileStatus";
 import profilePhoto from './../../../img/user-photo02.jpg'
+import {ProfileStatusWithHoc} from "./ProfileStatusWithHocs";
 
 export const ProfileInfo = (props) => {
     if(!props.profile) {
@@ -21,7 +21,7 @@ export const ProfileInfo = (props) => {
                     USER
                     <div>{props.profile.fullName}</div>
                     <div>{props.profile.aboutMe}</div>
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                    <ProfileStatusWithHoc status={props.status} updateStatus={props.updateStatus}/>
                 </div>
                 <div>
                     CONTACTS
